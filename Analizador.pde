@@ -6,22 +6,22 @@
 |====================================================================|
 */
 public class Analizador {
-    Araña_Web buscador;
+    Web buscar;
     
     public Analizador () {
-        this.buscador = new Araña_Web ();
+        this.buscar = new Web ();
     }
     
     //-------------------------|Analizar HTML|-------------------------//
-    public ArrayList<String> analizarHTML (String texto) {
+    public ArrayList<String> analizarHTML (String text) {
       ArrayList <String> etiquetas = new ArrayList <String>();
       
       //Buscar etiquetas
-      for (int i = 0; i < texto.length() - 2; i ++) {
+      for (int i = 0; i < text.length() - 2; i ++) {
         String etiqueta = "";
          
-        if (texto.substring(i, i+1).equals("<")) {
-          etiqueta = obtenerEtiqueta (texto, i);
+        if (text.substring(i, i+1).equals("<")) {
+          etiqueta = obtenerEtiqueta (text, i);
           if (!etiqueta.equals(""))
             etiquetas.add(etiqueta);
         }
@@ -33,19 +33,19 @@ public class Analizador {
     
     //-------------------------|Analizar Página|-------------------------//
     public String obtenerHTML (String url) {
-      return buscador.obtener_html(url);
+      return buscar.obtener_html(url);
     }
     
     
     //-------------------------|Obtener SubCadena|-------------------------//
-    public String obtenerEtiqueta (String texto, int pos) {
+    public String obtenerEtiqueta (String text, int pos) {
       int j = pos;
       
       //Buscar el fin de la etiqueta
-      while (j < texto.length()) {
-        if (texto.substring (j, j + 1).equals(" ")
-         || texto.substring (j, j + 1).equals(">"))
-          return texto.substring (pos + 1, j);
+      while (j < text.length()) {
+        if (text.substring (j, j + 1).equals(" ")
+         || text.substring (j, j + 1).equals(">"))
+          return text.substring (pos + 1, j);
         
         j++;
       }
